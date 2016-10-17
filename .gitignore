@@ -2,6 +2,7 @@
 .project
 .settings
 .classpath
+.pydevproject
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
