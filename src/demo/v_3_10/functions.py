@@ -3,7 +3,7 @@
 # but it's not required.
 def print_me(a_string="Default string.") -> None:
     print(a_string)
-    return
+    return  # or "return None". Neither are required when returning None.
 
 
 # Style convention is to put 2 blank lines before and after each function definition.
@@ -16,7 +16,6 @@ print_me()  # Let it use its default argument.  NOTE: doesn't work without the p
 # Parameters are passed by reference.
 def change_me(my_list):
     my_list.append('added by change_me()')
-    return
 
 
 a_list = [8, 9, 10]

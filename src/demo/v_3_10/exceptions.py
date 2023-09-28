@@ -31,16 +31,16 @@ finally:
 
 
 # To "raise" your own exception, use the "raise" statement.
-class HeckYeahException(Exception):
+class NotGoodException(Exception):
     def __init__(self, arg):
         self.args = (arg,)
 
 
 try:
     print("\nAbout to raise an exception.")
-    raise HeckYeahException("Napoleon Dynamite")
-except HeckYeahException as argument:
-    print("Heck yeah! --", argument)
+    raise NotGoodException("You messed up.")
+except NotGoodException as argument:
+    print("It looks like...", argument)
 else:
     print("Made it through without any exceptions.")
 
