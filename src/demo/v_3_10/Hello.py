@@ -11,15 +11,6 @@ print(
 # Print multiple things on one line. Python automatically adds a space between them.
 print("Hello,", "world.")
 
-# Read a character from stdin
-c = input("Type 'a': ")
-if c == 'a':
-    print(c)
-elif c == 'b':
-    print("Wrong!")
-else:
-    print("[Sigh...] Not even close.")
-
 # To print without a newline, use write() from the sys module.
 import sys
 x = 'foo'
