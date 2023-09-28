@@ -12,10 +12,11 @@ print(
 print("Hello,", "world.")
 
 # To print without a newline, use write() from the sys module.
-import sys
-x = 'foo'
-sys.stdout.write(x)
-sys.stdout.write(" hi")
+from sys import stdout
+write = stdout.write
+write("foo")
+print("bar", end="") # use the end parameter as an alternative way to skip the newline
+write(" hi")
 print()
 
 # You can assign multiple variables at once.
@@ -41,7 +42,6 @@ print(True or False)
 print(False or False)
 print(not True)  # use "not" instead of !
 print(not False)
-
 
 # Number types in python are immutable. Example...
 print()

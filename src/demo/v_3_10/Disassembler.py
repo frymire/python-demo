@@ -8,5 +8,4 @@ def sum_it():
     print(f"vara + varb = {vara + varb}")
 
 
-# Call dis function for the function.
-dis(sum_it)
+dis(sum_it)  # disassemble the function
