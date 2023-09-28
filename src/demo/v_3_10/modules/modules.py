@@ -1,7 +1,7 @@
 
 import support
 from support import print_hello
-Support.print_hello("#1")
+support.print_hello("#1")
 print_hello("#2")
 
 
