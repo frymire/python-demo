@@ -34,11 +34,11 @@ print dir(math)
 # Test that we can import and use things from subpackages.  sayHi1 and  
 # sayHi2 are imported there, so I don't have to do it explicitly here.
 print
-import subpackage
-subpackage.sayHi1()
-subpackage.sayHi2()
+import v_2_7
+v_2_7.sayHi1()
+v_2_7.sayHi2()
    
 print
-from subpackage import sayHi1, sayHi2
+from v_2_7 import sayHi1, sayHi2
 sayHi1()
 sayHi2()
