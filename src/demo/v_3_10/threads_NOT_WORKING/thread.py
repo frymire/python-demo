@@ -15,7 +15,7 @@
 #         count += 1
 #         print "%s: %s" % (threadName, count)
 #
-# # Create two threads as follows
+# # Create two threads_NOT_WORKING as follows
 # try:
 #     thread.start_new_thread( print_time, ("Thread-1", 2, ) )
 #     thread.start_new_thread( print_time, ("Thread-2", 4, ) )

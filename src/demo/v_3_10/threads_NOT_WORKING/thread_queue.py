@@ -31,14 +31,14 @@
 # nameList = ["One", "Two", "Three", "Four", "Five"]
 # queueLock = threading.Lock()
 # workQueue = Queue.Queue(10)
-# threads = []
+# threads_NOT_WORKING = []
 # threadID = 1
 #
-# # Create new threads
+# # Create new threads_NOT_WORKING
 # for tName in threadList:
 #     thread = myThread(threadID, tName, workQueue)
 #     thread.start()
-#     threads.append(thread)
+#     threads_NOT_WORKING.append(thread)
 #     threadID += 1
 #
 # # Fill the queue
@@ -51,10 +51,10 @@
 # while not workQueue.empty():
 #     pass
 #
-# # Notify threads it's time to exit
+# # Notify threads_NOT_WORKING it's time to exit
 # exitFlag = 1
 #
-# # Wait for all threads to complete
-# for t in threads:
+# # Wait for all threads_NOT_WORKING to complete
+# for t in threads_NOT_WORKING:
 #     t.join()
 # print "Exiting Main Thread"
