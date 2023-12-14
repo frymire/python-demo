@@ -78,3 +78,8 @@ print(arr_reshaped)
 random_array = np.random.rand(3, 3)  # Create a 3x3 array of random numbers
 print("Random array:")
 print(random_array)
+
+# Define ranges
+print(np.arange(2, 11))  # 2 to 10
+print(np.arange(2, 11, 2))  # even integers from 2 to 10
+print(np.arange(10, 0, -1))  # 10 down to 1
