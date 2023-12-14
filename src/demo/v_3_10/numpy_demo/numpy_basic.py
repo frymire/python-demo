@@ -32,6 +32,8 @@ print(eigenvectors)
 # Perform LU factorization. P is the permutation matrix,
 # L is the lower triangular matrix, and U is the upper triangular matrix
 import scipy.linalg as la
+
+# noinspection PyTupleAssignmentBalance
 P, L, U = la.lu(matrix)
 print("Permutation Matrix (P):")
 print(P)
