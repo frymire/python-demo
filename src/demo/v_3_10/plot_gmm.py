@@ -2,42 +2,74 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal as gaussian
 
-# Set the random seed for reproducibility
-np.random.seed(0)
 
-# Define parameters for the Gaussian mixture
-num_samples = 1000
-component_means = [(-2, -2), (0, 0), (2, 2)]
-component_covs = [np.eye(2), np.eye(2), np.eye(2)]
-component_weights = [0.3, 0.4, 0.3]
+class GMM:
+    """Gaussian Mixture Model """
 
-# Generate random samples from the Gaussian mixture
-samples = []
-for i in range(num_samples):
-    # Choose a component based on the weights
-    component = np.random.choice(3, p=component_weights)
+    np.random.seed(0)  # Set the random seed for reproducibility
 
-    # Generate a sample from the selected component
-    sample = np.random.multivariate_normal(component_means[component], component_covs[component])
-    samples.append(sample)
+    def __init__(self, components):
+        self.components = components
+        self.num_components = len(self.components)
 
-samples = np.array(samples)
+    def pdf(self, x):
+        return sum(c.weight * gaussian.z(x, mean=c.mean, cov=c.covariance) for c in self.components)
 
-# Create a 2-D grid for plotting
-x, y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
-pos = np.dstack((x, y))
+    def sample(self, num_samples=None):
+        if num_samples is None:
+            c = np.random.choice(3, p=[c.weight for c in self.components])
+            return self.components[c].sample()
+        else:
+            return [self.sample() for _ in range(num_samples)]
 
-# Evaluate the Gaussian mixture PDF at each point in the grid
-pdf_values = np.zeros_like(x)
-for i in range(len(component_means)):
-    pdf_values += component_weights[i] * gaussian.pdf(pos, mean=component_means[i], cov=component_covs[i])
+    def compute_heatmap(self, x, y):
+        pdf = np.zeros_like(x)
+        xy = np.dstack((x, y))
+        for c in self.components:
+            pdf += c.weight * gaussian.pdf(xy, mean=c.mean, cov=c.covariance)
+        return pdf
 
-# Create a heatmap plot
-plt.figure(figsize=(8, 6))
-plt.contourf(x, y, pdf_values, cmap='viridis')
-plt.colorbar()
+
+class GaussianComponent:
+    """Gaussian Component"""
+
+    def __init__(self, weight, mean, covariance):
+        self.weight = weight
+        self.mean = np.array(mean)
+        self.covariance = np.array(covariance)
+        self.dimension = len(mean)
+        if self.covariance.shape != (self.dimension, self.dimension):
+            raise ValueError(
+                f"Dimensions of covariance do not match self.dimension. Expected ("
+                f"{self.dimension}, "
+                f"{self.dimension}), "
+                f"but got {self.covariance.shape}")
+
+    def likelihood(self, x):
+        return gaussian.z(x, mean=self.mean, cov=self.covariance)
+
+    def sample(self):
+        return np.random.multivariate_normal(self.mean, self.covariance)
+
+
+c1 = GaussianComponent(0.3, (1, 1), np.diag([0.25, 3]))
+c2 = GaussianComponent(0.2, (3, 4), np.eye(2))
+c3 = GaussianComponent(0.5, (5, 5), np.array([[2, -1.2], [-1.2, 2]]))
+gmm = GMM([c1, c2, c3])
+
+plt.figure(figsize=(12, 9))
+
+(x_min, x_max, x_grid) = (-2, 10, 100)
+(y_min, y_max, y_grid) = (-2, 10, 100)
+x, y = np.meshgrid(np.linspace(x_min, x_max, x_grid), np.linspace(y_min, y_max, y_grid))
+z = gmm.compute_heatmap(x, y)
+
 plt.title('2-D Gaussian Mixture')
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.show()
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.contourf(x, y, z, cmap='viridis')
+plt.colorbar()
 
+samples = np.array(gmm.sample(1000))
+plt.scatter(samples[:, 0], samples[:, 1], s=10, alpha=0.6, color='red')
+plt.show()
