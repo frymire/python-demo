@@ -10,7 +10,7 @@ def print_me(a_string="Default string.") -> None:
 
 print_me("Hi.")
 print_me(a_string="Hi.")  # You can also specify the parameters by name
-print_me()  # Let it use its default argument.  NOTE: doesn't work without the parentheses.
+print_me()  # Let it use its default argument.
 
 
 # Parameters are passed by reference.

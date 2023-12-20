@@ -51,25 +51,27 @@ class GaussianComponent:
     def sample(self):
         return np.random.multivariate_normal(self.mean, self.covariance)
 
+# Test code...
+if __name__ == "__main__":
 
-c1 = GaussianComponent(0.3, (1, 1), np.diag([0.25, 3]))
-c2 = GaussianComponent(0.2, (3, 4), np.eye(2))
-c3 = GaussianComponent(0.5, (5, 5), np.array([[2, -1.2], [-1.2, 2]]))
-gmm = GMM([c1, c2, c3])
+    c1 = GaussianComponent(0.3, (1, 1), np.diag([0.25, 3]))
+    c2 = GaussianComponent(0.2, (3, 4), np.eye(2))
+    c3 = GaussianComponent(0.5, (5, 5), np.array([[2, -1.2], [-1.2, 2]]))
+    gmm = GMM([c1, c2, c3])
 
-plt.figure(figsize=(12, 9))
+    plt.figure(figsize=(12, 9))
 
-(x_min, x_max, x_grid) = (-2, 10, 100)
-(y_min, y_max, y_grid) = (-2, 10, 100)
-x, y = np.meshgrid(np.linspace(x_min, x_max, x_grid), np.linspace(y_min, y_max, y_grid))
-z = gmm.compute_heatmap(x, y)
+    (x_min, x_max, x_grid) = (-2, 10, 100)
+    (y_min, y_max, y_grid) = (-2, 10, 100)
+    x, y = np.meshgrid(np.linspace(x_min, x_max, x_grid), np.linspace(y_min, y_max, y_grid))
+    z = gmm.compute_heatmap(x, y)
 
-plt.title('2-D Gaussian Mixture')
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.contourf(x, y, z, cmap='viridis')
-plt.colorbar()
+    plt.title('2-D Gaussian Mixture')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.contourf(x, y, z, cmap='viridis')
+    plt.colorbar()
 
-samples = np.array(gmm.sample(1000))
-plt.scatter(samples[:, 0], samples[:, 1], s=10, alpha=0.6, color='red')
-plt.show()
+    samples = np.array(gmm.sample(1000))
+    plt.scatter(samples[:, 0], samples[:, 1], s=10, alpha=0.6, color='red')
+    plt.show()
