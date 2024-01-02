@@ -1,5 +1,5 @@
-from src.demo.v_3_10.decorator.component import ConcreteComponent
-from src.demo.v_3_10.decorator.decorator import ConcreteDecoratorA, ConcreteDecoratorB
+from src.demo.v_3_10.object_oriented.decorator.component import ConcreteComponent
+from src.demo.v_3_10.object_oriented.decorator.decorator import ConcreteDecoratorA, ConcreteDecoratorB
 
 simple = ConcreteComponent()
 decorated1 = ConcreteDecoratorA(simple)
