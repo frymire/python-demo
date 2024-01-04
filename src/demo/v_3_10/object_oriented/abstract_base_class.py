@@ -7,7 +7,8 @@ class MyAbstractClass(ABC):
     def my_abstract_method(self):
         pass
 
-    def concrete_method(self):
+    @staticmethod
+    def concrete_method():
         print("This is a concrete method")
 
 
