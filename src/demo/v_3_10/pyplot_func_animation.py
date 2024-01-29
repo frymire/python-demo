@@ -20,6 +20,5 @@ def update(frame):
     return line,
 
 
-animation = FuncAnimation(figure, update, frames=100, init_func=init, blit=True)
-animation.save('sine_wave_animation.mp4', writer='ffmpeg', fps=30)
-plt.close()  # Close the figure to prevent it from displaying in Jupyter notebooks
+animation = FuncAnimation(figure, update, frames=100, blit=True)
+animation.save('pyplot_func_animation.mp4', writer='ffmpeg', fps=30)
