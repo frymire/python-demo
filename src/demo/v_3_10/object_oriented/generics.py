@@ -40,7 +40,7 @@ if __name__ == '__main__':
     print()
     print("Child instance assigned to un-parameterized Parent variable...")
     animal: Animal = Panda()  # Java or C++ would not allow you to declare an un-parameterized Animal
-    # animal.execute(Food())  # run-time error and LSP violation
+    # animal.eat(Food())  # run-time error and LSP violation
     animal.eat(Bamboo())
 
     print()
