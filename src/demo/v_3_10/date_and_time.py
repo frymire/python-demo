@@ -1,5 +1,8 @@
-import time
 import calendar
+import time
+from datetime import datetime, timezone
+
+from tzlocal import get_localzone
 
 # Python has a built-in 9-tuple for time (0 is Monday for tm_wday)
 ticks = time.time()
@@ -31,3 +34,8 @@ print("1996", calendar.isleap(1996))
 print("1999", calendar.isleap(1999))
 print("2000", calendar.isleap(2000))
 print("2100", calendar.isleap(2100))
+
+# Get the local time zone
+local_timezone = get_localzone()
+local_timezone_abbreviation = datetime.now(local_timezone).tzname()
+print(f"\nLocal Timezone: {local_timezone} ({local_timezone_abbreviation})")

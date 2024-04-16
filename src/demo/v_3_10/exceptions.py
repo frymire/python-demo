@@ -22,8 +22,8 @@ print()
 try:
     a = 0
     x = 1 / a
-except Exception:
-    print("Something bad happened.")
+except Exception as e:
+    print("Something bad happened:", e)
 else:
     print("Successfully divided by", a)
 finally:
